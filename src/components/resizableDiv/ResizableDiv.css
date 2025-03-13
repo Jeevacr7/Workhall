@@ -1,0 +1,51 @@
+
+/* Grid Cell */
+.grid-cell {
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Draggable Component */
+.component {
+    width: 100px;
+    height: 80px;
+    background: blue;
+    position: absolute;
+    cursor: grab;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Resize Handle */
+.resize-handle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 2px solid blue;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+/* Button */
+.btn {
+    margin: 10px;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.grid-cell:hover {
+    background: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,11 @@
+.artboard {
+    position: relative;
+    width: 100dvw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 80px);
+    gap: 12px;
+    background: #ddd;
+    border: 2px solid black;
+    padding: 6px; /* Ensures alignment */
+}
