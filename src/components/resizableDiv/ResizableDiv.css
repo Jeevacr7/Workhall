@@ -12,7 +12,7 @@
 .component {
     width: 100px;
     height: 80px;
-    background: blue;
+    background: cornsilk;
     position: absolute;
     cursor: grab;
     border-radius: 8px;
@@ -29,8 +29,8 @@
     position: absolute;
     width: 15px;
     height: 15px;
-    background: white;
-    border: 2px solid blue;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
     bottom: 0;
     right: 0;
     cursor: se-resize;
