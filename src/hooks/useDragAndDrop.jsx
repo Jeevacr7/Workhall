@@ -1,4 +1,4 @@
-import { GAP, GRID_SIZE_X, GRID_SIZE_Y } from "../utils/Constants";
+import { GAP, GRID_SIZE_Y, X_POSITION, Y_POSITION } from "../utils/Constants";
 
 const useDragAndDrop = () => {
     const onDragEnter = (e) => {
@@ -18,10 +18,11 @@ const useDragAndDrop = () => {
     const handleDrop = (e, artboardRef, onDropCallback) => {
         e.preventDefault();
         const rect = artboardRef.current.getBoundingClientRect();
-        let newX = Math.floor((e.clientX - rect.left) / (GRID_SIZE_X + GAP)) * (GRID_SIZE_X + GAP) + 6;
-        let newY = Math.floor((e.clientY - rect.top) / (GRID_SIZE_Y + GAP)) * (GRID_SIZE_Y + GAP) + 6;
-        newX = Math.max(6, Math.min(newX, rect.width - GRID_SIZE_X));
-        newY = Math.max(6, Math.min(newY, rect.height - GRID_SIZE_Y));
+        const width = artboardRef.current.offsetWidth/4 - GAP;
+        let newX = Math.floor((e.clientX - rect.left) / (width + GAP)) * (width + GAP) + X_POSITION;
+        let newY = Math.floor((e.clientY - rect.top) / (GRID_SIZE_Y + GAP)) * (GRID_SIZE_Y + GAP) + Y_POSITION;
+        newX = Math.max(X_POSITION, Math.min(newX, rect.width - width));
+        newY = Math.max(Y_POSITION, Math.min(newY, rect.height - GRID_SIZE_Y));
         console.log(e.target.dataType);
         onDropCallback(newX, newY);
         e.target.style.backgroundColor = 'transparent';
