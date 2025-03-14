@@ -19,7 +19,7 @@ const GridPageBuilder = () => {
 
   return (
     <div className="page-container">
-      <button className="btn" draggable>Add Component</button>
+      <button className="btn" draggable datatype="report">Add Component</button>
       <div className="artboard" ref={artboardRef} onDrop={(e)=>handleDrop(e, artboardRef, addComponent)} onDragOver={handleDragOver}>
         {[...Array(COLS * ROWS)].map((_, i) => (
           <div key={i} onDragEnter={onDragEnter} onDragLeave={onDragLeave} className="grid-cell"></div>

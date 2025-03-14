@@ -2,11 +2,11 @@ import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const data = [
-  { name: "Jan", sales: 4000 },
-  { name: "Feb", sales: 3000 },
-  { name: "Mar", sales: 5000 },
-  { name: "Apr", sales: 7000 },
-  { name: "May", sales: 6000 },
+  { name: "Jan", sales: 400 },
+  { name: "Feb", sales: 300 },
+  { name: "Mar", sales: 500 },
+  { name: "Apr", sales: 700 },
+  { name: "May", sales: 600 },
 ];
 
 const Report = ({height}) => {
