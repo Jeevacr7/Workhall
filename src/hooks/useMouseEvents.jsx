@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { GAP, getGridHeight, getGridWidth, X_POSITION } from '../utils/Constants';
+import { GAP, X_POSITION } from '../utils/Constants';
+import { getGridHeight, getGridWidth } from "../utils/gridUtils";
 
 const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
     const [size, setSize] = useState({ width, height });
     const [resizing, setResizing] = useState(false);
     const [position, setPosition] = useState({ x, y });
     const sizeRef = useRef({ width, height });
+    
     const handleResizeMouseDown = useCallback((e) => {
         e.stopPropagation();
         setResizing(true);

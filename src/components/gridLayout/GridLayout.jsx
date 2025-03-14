@@ -1,12 +1,14 @@
-import React, { useState, useRef } from "react";
-import "./GridLayout.css";
-import { COLS, getGridHeight, getGridWidth, ROWS, X_POSITION, Y_POSITION } from "../../utils/Constants";
-import ResizableDiv from "../resizableDiv/ResizableDiv";
+import React, { useRef, useState } from "react";
+import chart from '../../assets/growth.png';
 import useDragAndDrop from "../../hooks/useDragAndDrop";
-import chart from '../../assets/growth.png'
+import { X_POSITION, Y_POSITION } from "../../utils/Constants";
+import ResizableDiv from "../resizableDiv/ResizableDiv";
+import "./GridLayout.css";
+import GridCells from "./GridCell";
+import { getGridHeight, getGridWidth } from "../../utils/gridUtils";
 const GridPageBuilder = () => {
   const [components, setComponents] = useState([]);
-  const { onDragEnter, onDragLeave, handleDrop, handleDragOver, onDrag } = useDragAndDrop();
+  const { handleDrop, handleDragOver } = useDragAndDrop();
   const artboardRef = useRef(null);
 
   const addComponent = (x = X_POSITION, y = Y_POSITION) => {
@@ -22,9 +24,7 @@ const GridPageBuilder = () => {
     <div className="page-container">
       <section className="left-section">
         <div className="artboard" ref={artboardRef} onDrop={(e)=>handleDrop(e, artboardRef, addComponent)} onDragOver={handleDragOver}>
-          {[...Array(COLS * ROWS)].map((_, i) => (
-            <div key={i} onDragEnter={onDragEnter} onDragLeave={onDragLeave} className="grid-cell"></div>
-          ))}
+          <GridCells />
           {components.map((comp) => (
             <ResizableDiv key={comp.id} {...comp} artboardRef={artboardRef} />
           ))}
@@ -33,7 +33,7 @@ const GridPageBuilder = () => {
       <section className="right-section">
           <div>
             <p>Components</p>
-            <div className="components" draggable onDrag={onDrag}>
+            <div className="components" draggable>
               <img src={chart} alt="Report Icon"/>
               Report
             </div>

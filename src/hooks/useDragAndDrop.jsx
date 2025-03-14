@@ -1,12 +1,8 @@
-import { GAP, getGridHeight, getGridWidth, X_POSITION, Y_POSITION } from "../utils/Constants";
+import { GAP, X_POSITION, Y_POSITION } from "../utils/Constants";
+import { getGridHeight, getGridWidth } from "../utils/gridUtils";
 
 const useDragAndDrop = () => {
 
-    const onDrag = (e) => {
-        e.preventDefault();
-        // e.target.style.opacity = 0.5;
-        // debugger
-    }
     const onDragEnter = (e) => {
         e.preventDefault();
         e.target.style.backgroundColor = '#dee5ff';
@@ -39,7 +35,7 @@ const useDragAndDrop = () => {
     };
     
 
-    return { onDragEnter, onDragLeave, handleDragOver, handleDrop, onDrag }
+    return { onDragEnter, onDragLeave, handleDragOver, handleDrop }
 }
 
 export default useDragAndDrop
