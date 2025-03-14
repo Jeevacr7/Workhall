@@ -46,7 +46,7 @@
     cursor: pointer;
 }
 
-.grid-cell:hover,
-.hover-effect {
-    background: rgba(0, 0, 0, 0.1);
+.grid-cell:hover{
+    background-color: #dee5ff;
+    border-color: #3897ea;
 }

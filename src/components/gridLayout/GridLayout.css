@@ -2,17 +2,17 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 140px);
+    grid-template-rows: repeat(8, calc((100dvh / 8) - 20px));
     gap: 12px;
-    background: #8f96a3;
-    border: 2px solid #727477;
+    background: #FFF;
+    border: 1px solid #cfcfcf;
     padding: 6px;
     border-radius: 8px;
 }
 
 .page-container {
     display: grid;
-    grid-template-columns: 1fr 15%;
+    grid-template-columns: 1fr 20%;
     padding: 1rem;
     gap: 1rem;
 }
@@ -26,16 +26,25 @@
 
 .components {
     width: 100%;
-    background-color: #8f96a3;
-    color: white;
-    padding: 1em;
-    border-radius: 8px;
+    background-color: #e5e5e5;
+    color: #313234;
+    padding: 10px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
+    font-size: 20px;
+    border: 1px solid #d1d1d1;
+    cursor: move;
+}
+
+.components:hover,
+.hover-effect {
+    background-color: #d1cfcf;
+    border: 1px solid #aaa8a8;
 }
 
 .components img {
     width: 24px;
     height: 24px;
-    margin-right: 8px;
+    margin-right: 10px;
 }
