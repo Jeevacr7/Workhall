@@ -6,6 +6,7 @@ import ResizableDiv from "../resizableDiv/ResizableDiv";
 import "./GridLayout.css";
 import GridCells from "./GridCell";
 import { getGridHeight, getGridWidth } from "../../utils/gridUtils";
+import Report from "../barChart/Report";
 const GridPageBuilder = () => {
   const [components, setComponents] = useState([]);
   const { handleDrop, handleDragOver } = useDragAndDrop();
@@ -26,7 +27,9 @@ const GridPageBuilder = () => {
         <div className="artboard" ref={artboardRef} onDrop={(e)=>handleDrop(e, artboardRef, addComponent)} onDragOver={handleDragOver}>
           <GridCells />
           {components.map((comp) => (
-            <ResizableDiv key={comp.id} {...comp} artboardRef={artboardRef} />
+            <ResizableDiv key={comp.id} {...comp} artboardRef={artboardRef}>
+              {(height)=><Report height={height}/>}
+            </ResizableDiv>
           ))}
         </div>
       </section>

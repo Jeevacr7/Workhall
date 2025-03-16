@@ -7,7 +7,7 @@ const GridCells = () => {
   return (
     <React.Fragment>
       {[...Array(COLS * ROWS).keys()].map(i => (
-        <div key={i} onDragEnter={onDragEnter} onDragLeave={onDragLeave} className="grid-cell"></div>
+        <div key={i} aria-label={`grid-cell-${i}`} onDragEnter={onDragEnter} onDragLeave={onDragLeave} role="gridcell" tabIndex={0} className="grid-cell"></div>
       ))}
     </React.Fragment>
   );
