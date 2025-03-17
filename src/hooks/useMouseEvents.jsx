@@ -17,11 +17,10 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
         if (!resizing) return;
         const width = getGridWidth(artboardRef);
         const height = getGridHeight(artboardRef);
-        const rect = artboardRef.current.getBoundingClientRect();
 
         setSize({
-            width: Math.max(width, Math.min(e.clientX - position.x, rect.width - position.x - GAP)),
-            height: Math.max(height, Math.min(e.clientY - position.y, rect.height - position.y - GAP)),
+            width: Math.max(width, e.clientX - position.x),
+            height: Math.max(height, e.clientY - position.y),
         });
     }, [resizing, position]);
 
@@ -52,13 +51,10 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
     
 
     const handleResize = useCallback((e) => {
-        if (!artboardRef.current) return;
         const gridWidth = getGridWidth(artboardRef) + GAP;
         const gridHeight = getGridHeight(artboardRef) + GAP;
         const newHeight = Math.max(gridHeight - GAP, occupiedColsRows.rows * gridHeight - GAP);
-        const newWidth = Math.max(gridWidth - GAP, occupiedColsRows.cols * gridWidth - GAP);
-        console.log(newHeight, newWidth);
-        
+        const newWidth = Math.max(gridWidth - GAP, occupiedColsRows.cols * gridWidth - GAP);       
         setSize({ height: newHeight, width: newWidth });
     }, [occupiedColsRows]);
 
@@ -81,14 +77,14 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
         if(!artboardRef.current) return;
 
         const observer = new ResizeObserver((e) => {
-            console.log(e);
                 handleResize();
+                handleResizePosition();
         });
         observer.observe(artboardRef.current);
         return () => {
             observer.disconnect();
         };  
-    }, [handleResize]);
+    }, [handleResize, handleResizePosition]);
 
     useEffect(() => {
         const artboard = artboardRef.current;
@@ -97,12 +93,10 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
         artboard.addEventListener("mousemove", handleResizeMouseMove);
         artboard.addEventListener("mouseup", handleResizeMouseUp);
         artboard.addEventListener("mouseleave", handleResizeMouseUp);
-        window.addEventListener("resize", handleResizePosition);
         return () => {
             artboard.removeEventListener("mousemove", handleResizeMouseMove);
             artboard.removeEventListener("mouseup", handleResizeMouseUp);
             artboard.removeEventListener("mouseleave", handleResizeMouseUp);
-            window.removeEventListener("resize", handleResizePosition);
         };
     }, [resizing]);
 

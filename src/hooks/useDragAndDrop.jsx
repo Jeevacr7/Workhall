@@ -27,8 +27,6 @@ const useDragAndDrop = () => {
         const height = getGridHeight(artboardRef);
         let newX = Math.floor((e.clientX - rect.left) / (width + GAP)) * (width + GAP) + X_POSITION;
         let newY = Math.floor((e.clientY - rect.top) / (height + GAP)) * (height + GAP) + Y_POSITION;
-        newX = Math.max(X_POSITION, Math.min(newX, rect.width - width));
-        newY = Math.max(Y_POSITION, Math.min(newY, rect.height - height));
         onDropCallback(newX, newY);
         e.target.style.backgroundColor = null;
         e.target.style.borderColor = null;
