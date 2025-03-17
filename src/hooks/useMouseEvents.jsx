@@ -53,10 +53,10 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
 
     const handleResize = useCallback((e) => {
         if (!artboardRef.current) return;
-        const gridWidth = getGridWidth(artboardRef);
-        const gridHeight = getGridHeight(artboardRef);
-        const newHeight = Math.max(gridHeight, occupiedColsRows.rows * gridHeight + GAP);
-        const newWidth = Math.max(gridWidth, occupiedColsRows.cols * gridWidth + GAP);
+        const gridWidth = getGridWidth(artboardRef) + GAP;
+        const gridHeight = getGridHeight(artboardRef) + GAP;
+        const newHeight = Math.max(gridHeight - GAP, occupiedColsRows.rows * gridHeight - GAP);
+        const newWidth = Math.max(gridWidth - GAP, occupiedColsRows.cols * gridWidth - GAP);
         console.log(newHeight, newWidth);
         
         setSize({ height: newHeight, width: newWidth });
