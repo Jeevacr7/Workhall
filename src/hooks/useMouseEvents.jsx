@@ -43,24 +43,22 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
     
         setSize({width: newWidth, height: newHeight });
     
-        setOccupiedColsRows(prev => {
-            const newCols = Math.min(colSpan, COLS);
-            const newRows = Math.min(rowSpan, ROWS);
-            return (prev.cols !== newCols || prev.rows !== newRows) 
-                ? { cols: newCols, rows: newRows } 
-                : prev;
-        });
+        const newRows = Math.min(rowSpan, ROWS);
+        const newCols = Math.min(colSpan, COLS);
+        setOccupiedColsRows({ cols: newCols, rows: newRows });
     
         setResizing(false);
     }, [resizing, position]);
     
 
     const handleResize = useCallback((e) => {
-        if (!artboardRef.current || occupiedColsRows.rows === 0 || occupiedColsRows.cols === 0) return;
-        const gridWidth = getGridWidth(artboardRef) + GAP;
-        const gridHeight = getGridHeight(artboardRef) + GAP;
-        const newHeight = occupiedColsRows.rows * gridHeight - GAP;
-        const newWidth = occupiedColsRows.cols * gridWidth - GAP;
+        if (!artboardRef.current) return;
+        const gridWidth = getGridWidth(artboardRef);
+        const gridHeight = getGridHeight(artboardRef);
+        const newHeight = Math.max(gridHeight, occupiedColsRows.rows * gridHeight + GAP);
+        const newWidth = Math.max(gridWidth, occupiedColsRows.cols * gridWidth + GAP);
+        console.log(newHeight, newWidth);
+        
         setSize({ height: newHeight, width: newWidth });
     }, [occupiedColsRows]);
 
@@ -72,7 +70,7 @@ const useMouseEvents = ({ x, y, width, height, artboardRef }) => {
         console.log(rect);
         
         setPosition(prev => {
-            // Round x position to nearest grid line
+            // Round x position to near est grid line
             const newX = Math.max(X_POSITION, Math.round(prev.x / gridWidth) * gridWidth + X_POSITION);
             const newY = Math.max(Y_POSITION, Math.round(prev.y / gridHeight) * gridHeight + Y_POSITION);
             return { y: newY, x: newX };
